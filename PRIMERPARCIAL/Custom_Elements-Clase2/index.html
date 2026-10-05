@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Taller 01 - Web Components</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+
+    <main>
+      <section class="section-courses">
+        <h1 class="section-title">Asignaturas</h1>
+        <div class="card-row">
+          <course-card name="Programación Web"   teacher="Luis Ortiz"     credits="2"></course-card>
+          <course-card name="Bases de Datos"     teacher="Armando Ortiz"  credits="2"></course-card>
+          <course-card name="Programación Móvil" teacher="Geovanny Brito" credits="3"></course-card>
+        </div>
+      </section>
+
+      <section class="section-students">
+        <h1 class="section-title">Estudiantes</h1>
+        <div class="card-row">
+          <student-card name="Ángel Lima"   career="Tecnologías de la Información" level="6" grade="16.7"></student-card>
+          <student-card name="Ashly Guamán" career="Biotecnología"                 level="3" grade="18.2"></student-card>
+          <student-card name="Ashly Guamán" career="Biotecnología"                 level="3" grade="10.2"></student-card>
+        </div>
+      </section>
+
+      <section class="section-products">
+        <h1 class="section-title">Productos</h1>
+        <div class="card-row">
+          <product-card name="Laptop" price="850" stock="20"></product-card>
+          <product-card name="Audífonos" price="45" stock="15"></product-card>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
