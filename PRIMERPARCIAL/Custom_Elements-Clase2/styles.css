@@ -133,64 +133,17 @@ main {
   background-color: #22c55e;
 }
 
-/* ── Product card ─────────────────────────────────────────── */
-.product-card {
-  width: 280px;
-  padding: 24px;
-  background: linear-gradient(135deg, #312e1e 0%, #1c190f 100%);
-  border: 1px solid #665d2e;
-  border-radius: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ── Employee card ────────────────────────────────────────── */
+.employee-row {
+  align-items: flex-start;
 }
 
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(234, 179, 8, 0.2);
+/* Estilos globales de prueba: no atraviesan el Shadow DOM. */
+h2 {
+  color: red;
+  font-size: 50px;
 }
 
-.product-card h2 {
-  font-size: 1.1rem;
-  color: #fde68a;
-  border-bottom: 1px solid #665d2e;
-  padding-bottom: 10px;
-}
-
-.product-card p {
-  font-size: 0.9rem;
-  color: #fef3c7;
-}
-
-.product-card .product-status.available {
-  color: #86efac;
-}
-
-.product-card .product-status.unavailable {
-  color: #fca5a5;
-}
-
-.product-card button {
-  margin-top: 6px;
-  padding: 9px 0;
-  width: 100%;
-  background-color: #ca8a04;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
-}
-
-.product-card button:hover:not(:disabled) {
-  background-color: #eab308;
-}
-
-.product-card button:disabled {
-  background-color: #475569;
-  cursor: not-allowed;
+p {
+  background: yellow;
 }
