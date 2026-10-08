@@ -208,3 +208,99 @@ class ProductCard extends HTMLElement {
 }
 
 customElements.define('product-card', ProductCard);
+
+class EmployeeCard extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() {
+    this.render();
+  }
+
+  render() {
+    const name = this.getAttribute('name') || 'Sin nombre';
+    const position = this.getAttribute('position') || 'Sin cargo';
+    const department = this.getAttribute('department') || 'Sin departamento';
+
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          width: min(100%, 320px);
+        }
+
+        .employee-card {
+          box-sizing: border-box;
+          width: 100%;
+          padding: 24px;
+          border: 1px solid #cbd5e1;
+          border-left: 5px solid #0f766e;
+          border-radius: 10px;
+          background: #f8fafc;
+          color: #172554;
+          font-family: Arial, sans-serif;
+          box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        h2 {
+          margin: 0 0 16px;
+          color: #0f766e;
+          font-size: 1.35rem;
+        }
+
+        p {
+          margin: 8px 0 0;
+          color: #334155;
+          font-size: 0.95rem;
+        }
+
+        strong {
+          color: #172554;
+        }
+
+        :host([theme="dark"]) .employee-card {
+          border-color: #475569;
+          border-left-color: #2dd4bf;
+          background: #17212b;
+          color: #f1f5f9;
+          box-shadow: 0 8px 20px rgba(2, 6, 23, 0.25);
+        }
+
+        :host([theme="dark"]) h2 {
+          color: #5eead4;
+        }
+
+        :host([theme="dark"]) p {
+          color: #cbd5e1;
+        }
+
+        :host([theme="dark"]) strong {
+          color: #f1f5f9;
+        }
+      </style>
+    `;
+
+    const article = document.createElement('article');
+    article.className = 'employee-card';
+
+    const heading = document.createElement('h2');
+    heading.textContent = name;
+
+    const positionText = document.createElement('p');
+    const positionLabel = document.createElement('strong');
+    positionLabel.textContent = 'Cargo: ';
+    positionText.append(positionLabel, document.createTextNode(position));
+
+    const departmentText = document.createElement('p');
+    const departmentLabel = document.createElement('strong');
+    departmentLabel.textContent = 'Departamento: ';
+    departmentText.append(departmentLabel, document.createTextNode(department));
+
+    article.append(heading, positionText, departmentText);
+    this.shadowRoot.append(article);
+  }
+}
+
+customElements.define('employee-card', EmployeeCard);
