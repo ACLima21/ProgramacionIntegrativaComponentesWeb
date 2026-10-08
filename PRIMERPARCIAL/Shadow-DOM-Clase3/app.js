@@ -73,6 +73,11 @@ class StudentCard extends HTMLElement {
 customElements.define('student-card', StudentCard);
 
 class ProductCard extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
   static get observedAttributes() {
     return ['name', 'price', 'stock'];
   }
@@ -123,8 +128,82 @@ class ProductCard extends HTMLElement {
       this.setAttribute('stock', String(Math.max(0, currentStock - 1)));
     });
 
+    const style = document.createElement('style');
+    style.textContent = `
+      *, *::before, *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :host {
+        display: block;
+      }
+
+      .product-card {
+        width: 280px;
+        padding: 24px;
+        background: linear-gradient(135deg, #312e1e 0%, #1c190f 100%);
+        border: 1px solid #665d2e;
+        border-radius: 14px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .product-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(234, 179, 8, 0.2);
+      }
+
+      h2 {
+        font-size: 1.1rem;
+        color: #fde68a;
+        border-bottom: 1px solid #665d2e;
+        padding-bottom: 10px;
+      }
+
+      p {
+        font-size: 0.9rem;
+        color: #fef3c7;
+      }
+
+      .product-status.available {
+        color: #86efac;
+      }
+
+      .product-status.unavailable {
+        color: #fca5a5;
+      }
+
+      button {
+        margin-top: 6px;
+        padding: 9px 0;
+        width: 100%;
+        background-color: #ca8a04;
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+
+      button:hover:not(:disabled) {
+        background-color: #eab308;
+      }
+
+      button:disabled {
+        background-color: #475569;
+        cursor: not-allowed;
+      }
+    `;
+
     article.append(heading, priceText, stockText, status, button);
-    this.replaceChildren(article);
+    this.shadowRoot.replaceChildren(style, article);
   }
 }
 
